@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    margin: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  li a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  #rcorner1 {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 20px; 
+    width: 200px;
+    height: 180px;  
+    float: left
+    
+  }
+
+  #rcorner2 {
+    border-radius: 25px;
+    background: #92af69;
+    padding: 20px;
+    width: 800px;
+    font-size: larger;
+    float: right;
+
+  }
+
+  #rcorner3 {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 30px; 
+    width: 200px;
+    height: 300px;  
+    float: left
+    
+  }
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a class="active" href="#pocetna">Pocetna</a></li>
+  <li><a href="#galerija">Galerija</a></li>
+  <li><a href="#lekari">Lekari</a></li>
+  <li><a href="/login">Ulogujte se</a></li>
+  <li><a href="/register">Registracija</a></li>
+  <li><a href="#kontakt">Kontakt</a></li>
+</ul>
+
+
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+  <h1 style="color: seagreen;">Opšta bolnica "Sveti Luka" Smederevo</h1>
+  <img  width="1100"src="/assets/pocetnasl.jpg">
+
+  <div>
+    <div *ngFor="let image of images">
+      <img src="image.src" alt="{{ image.alt }}">
+    </div>
+  </div>
+  
+  <div id="rcorner1">
+  <h4>Kontaktirajte nas</h4>
+  Knez Mihailova 51,
+  11300, Smederevo
+  <br>
+  Pošaljite nam poruku
+  <br>
+  +381 (26) 240 700
+  <br>
+  office@obsmederevo.rs
+  </div>
+
+  <div id="rcorner2">
+    <h2>Lekari</h2>
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Specijalizacija</th>
+    </tr>
+    <tr *ngFor="let l of lekari">
+        <td>{{l.ime}}</td>
+        <td>{{l.prezime}}</td>
+        <td>{{l.specijalizacija}}</td>
+        <td> <img src="/assets/lekari/{{l.slika}}" width="50"></td>
+    </tr>
+    
+  </div>
+  <br>
+  <div id="rcorner3">
+    <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Sortiraj lekare po: </p>
+    <select [(ngModel)]="sortIme">
+      <option value="ime">Ime</option>
+      <option value="prezime">Prezime</option>
+      <option value="specijalizacija">Specijalizacija</option>
+    </select>
+    <select [(ngModel)]="sortNacin">
+      <option value="nerastuce">Nerastuce</option>
+      <option value="neopadajuce">Neopadajuce</option>
+    </select>
+    <br>
+    <button (click)="sort()">Sortiraj</button>
+
+    <hr>
+    
+   
+    <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Pretrazi lekara </p>
+    Ime: <input type="text" [(ngModel)]="searchIme">
+    Prezime: <input type="text" [(ngModel)]="searchPrezime">
+    Specijalizacija: <input type="text" [(ngModel)]="searchSpec">
+    <button (click)="search()">Pretrazi</button>
+  </div>
+
+ <!-- hidden="div" -->
+  <div>
+    <h3>Pretrazeni lekari:</h3>
+    <tr>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Specijalizacija</th>
+  </tr>
+  <tr *ngFor="let l of searchLekari">
+      <td>{{l.ime}}</td>
+      <td>{{l.prezime}}</td>
+      <td>{{l.specijalizacija}}</td>
+      <td> <img width="50" src="/assets/lekari/{{l.slika}}"></td>
+  </tr>
+  </div>
+
+</div>
+
+
+
+</body> 
+</html>

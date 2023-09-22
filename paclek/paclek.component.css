@@ -1,0 +1,29 @@
+.rcorner1 {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 20px; 
+    width: 200px;
+    height: 180px;  
+    float: left
+    
+  }
+
+.rcorner2 {
+    border-radius: 25px;
+    background: #92af69;
+    padding: 20px;
+    width: 800px;
+    font-size: larger;
+    float: left;
+
+  }
+
+  .rcorner3 {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 30px; 
+    width: 200px;
+    height: 350px;  
+    float: left
+    
+  }

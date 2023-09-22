@@ -1,0 +1,21 @@
+<h2 style="color: seagreen;">Ukoliko ste novi korisnik</h2>
+<h1 style="color: seagreen;">REGISTRUJTE SE</h1>
+<br><br>
+
+
+<div class="rcorner" >
+<br><h3>Unesite sledece podatke:</h3> <br>
+Korisnicko ime: <input type="text" [(ngModel)]="username"> <br>
+Lozinka: <input type="password" [(ngModel)]="pass"> <br>
+Potvrda lozinke: <input type="password"  [(ngModel)]="passAgain"> <br>
+Ime: <input type="text"  [(ngModel)]="ime"> <br>
+Prezime: <input type="text"  [(ngModel)]="prez"> <br>
+Adresa: <input type="text"  [(ngModel)]="adresa"> <br>
+Kontakt telefon: <input type="text"  [(ngModel)]="tel"> <br>
+E-mail adresa: <input type="text"  [(ngModel)]="email"> <br>
+Profilna slika: <input type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)" required>
+<br> 
+<button (click)="register()">Potvrdi</button>
+<hr>
+<p class="error">{{error}}</p>
+</div>

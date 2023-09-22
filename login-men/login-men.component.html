@@ -1,0 +1,13 @@
+<h1>Ulogujte se kao menadzer</h1>
+<br>
+Korisnicko ime:  
+<input type="text" [(ngModel)]="username">
+<br/><br/>
+Lozinka:  
+<input type="password" [(ngModel)]="password">
+<br/> <br/>
+
+<br/> <br/>
+<button (click)="login()">Login</button>
+<hr/>
+<p class="error">{{error}}</p>

@@ -1,0 +1,10 @@
+.rcorner {
+    border-radius: 25px;
+    background: #92af69;
+    padding: 20px;
+    width: 500px;
+  }
+
+  .error{
+    color: red;
+  }

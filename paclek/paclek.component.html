@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+li a:hover {
+  background-color: #111;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="\profil">Profil</a></li>
+  <li><a class="active"  href="\paclek">Lekari</a></li>
+  <li><a href="\pregledi">Pregledi</a></li>
+  <li><a href="\obavestenja">Obavestenja</a></li>
+</ul>
+ 
+ <div class="rcorner2">
+    <h2>Lekari</h2>
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Specijalizacija</th>
+    </tr>
+    <tr *ngFor="let l of lekari">
+        <td>{{l.ime}}</td>
+        <td>{{l.prezime}}</td>
+        <td>{{l.specijalizacija}}</td>
+        <td> <img width="50" src="/assets/lekari/{{l.slika}}"></td>
+    </tr>
+  </div>
+
+
+  <br>
+
+
+  <div class="rcorner3">
+    <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Sortiraj lekare po: </p>
+    <select [(ngModel)]="sortIme">
+      <option value="ime">Ime</option>
+      <option value="prezime">Prezime</option>
+      <option value="specijalizacija">Specijalizacija</option>
+      <option value="ordinacija">Ordinacija</option>
+    </select>
+    <select [(ngModel)]="sortNacin">
+      <option value="nerastuce">Nerastuce</option>
+      <option value="neopadajuce">Neopadajuce</option>
+    </select>
+    <br>
+    <button (click)="sort()">Sortiraj</button>
+
+    <hr>
+    
+   
+    <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Pretrazi lekara </p>
+    Ime: <input type="text" [(ngModel)]="searchIme">
+    Prezime: <input type="text" [(ngModel)]="searchPrezime">
+    Specijalizacija: <input type="text" [(ngModel)]="searchSpec">
+    Ordinacija: <input type="text" [(ngModel)]="searchOrd">
+    <button (click)="searchPaclek()">Pretrazi</button>
+  </div>
+
+ <!-- hidden="div" -->
+  <div>
+    <h3>Pretrazeni lekari:</h3>
+    <tr>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Specijalizacija</th>
+  </tr>
+  <tr *ngFor="let l of searchLekari">
+      <td>{{l.ime}}</td>
+      <td>{{l.prezime}}</td>
+      <td>{{l.specijalizacija}}</td>
+      <td> <button (click)="save(l.korisnicko_ime)">Profil</button></td>
+  </tr>
+  </div>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+li a:hover {
+  background-color: #111;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a class="active" href="\profil">Profil</a></li>
+  <li><a href="\paclek">Lekari</a></li>
+  <li><a href="\pregledi">Pregledi</a></li>
+  <li><a href="\obavestenja">Obavestenja</a></li>
+</ul>
+
+<img src="/assets/pacijenti/{{pacijent.slika}}">
+
+<h2>Podaci o korisniku:</h2>
+Ime: {{pacijent.ime}}  
+<br>
+Prezime: {{pacijent.prezime}}  
+<br>
+Adresa: {{pacijent.adresa}} 
+<br>
+Email: {{pacijent.email}}  
+<br>
+Telefon: {{pacijent.telefon}}  
+<br>
+
+<hr>
+
+Azurirajte podatke <button (click)="edit()">Edit</button>
+
+<div>
+Ime: 
+<input type="text" [(ngModel)]="nIme" >
+<br>
+Prezime: 
+<input type="text" [(ngModel)]="nPrezime">  
+<br>
+Adresa: 
+<input type="text"[(ngModel)]="nAdresa">
+<br>
+Email: 
+<input type="text"[(ngModel)]="nEmail">
+<br>
+Telefon:
+<input type="text" [(ngModel)]="nTelefon">
+<br>
+Profilna slika:
+<input type="file">
+<hr/>
+{{text}}
+</div>
+
+</body>
+</html>

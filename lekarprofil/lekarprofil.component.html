@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+li a:hover {
+  background-color: #111;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="\profil">Profil</a></li>
+  <li><a href="\paclek">Lekari</a></li>
+  <li><a class="active" href="\pregledi">Pregledi</a></li>
+  <li><a href="\obavestenja">Obavestenja</a></li>
+</ul>
+ 
+
+<h2>Informacije o lekaru</h2>
+
+Ime: {{lekar.ime}} <br>
+Prezime: {{lekar.prezime}} <br>
+Adresa: {{lekar.adresa}} <br>
+Telefon: {{lekar.telefon}} <br>
+E-mail: {{lekar.email}} <br>
+Specijalizacija: {{lekar.specijalizacija}} <br>
+Ogranak medicine: {{lekar.ordinacija}} <br>
+
+<h2>Lekarski pregledi koje obavlja ovaj lekar</h2>
+
+<table>
+<tr>
+    <th>Naziv</th>
+    <th>Cena</th>
+    <th>Trajanje</th>
+</tr>
+<tr *ngFor="let p of pregledi">
+    <td>{{p.naziv}}</td>
+    <td>{{p.cena}} RSD</td>
+    <td>{{p.trajanje}} min</td>
+</tr>
+</table>
+
+<hr>
+<h2>Zakazite pregled</h2>
+Odaberite pregled koji zakazujete:
+<select *ngFor="let p of pregledi" [(ngModel)]="pregled">
+    <option>{{p.naziv}}</option>
+</select>
+<br>
+Datum: 
+<input type="date" [(ngModel)]="datum">
+<br>
+Vreme:
+<input type="time" [(ngModel)]="vreme">
+<br>
+<button (click)="zakazi()">Zakazi</button>
+
+<hr>
+{{error}}
+
+
+</body>
+</html>

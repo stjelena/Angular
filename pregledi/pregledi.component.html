@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+li a:hover {
+  background-color: #111;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="\profil">Profil</a></li>
+  <li><a href="\paclek">Lekari</a></li>
+  <li><a class="active" href="\pregledi">Pregledi</a></li>
+  <li><a href="\obavestenja">Obavestenja</a></li>
+</ul>
+ 
+<h2>Vasi zakazani pregledi:</h2>
+
+<table>
+    <tr>
+        <th>Naziv</th>
+        <th>Datum</th>
+        <th>Vreme</th>
+        <th>Ogranak</th>
+        <th>Lekar</th>
+    </tr>
+    <tr *ngFor="let p of preglediP">
+        <td>{{p.naziv}}</td>
+        <td>{{p.datum}}</td>
+        <td>{{p.vreme}}</td>
+        <td>{{p.ordinacija}}</td>
+        <td>{{p.imeLek}} {{p.prezimeLek}}</td>
+        <td>
+            <button (click)="otkazi(p.id)">Otkazi</button>
+        </td>
+    </tr>
+</table>
+<hr><hr>
+
+<h2>Vasi prethodni izvestaji:</h2>
+
+<table>
+    <tr>
+        <th>Datum</th>
+        <th>Vreme</th>
+        <th>Lekar</th>
+        <th>Specijalizacija</th>
+        <th>Razlog dolaska</th>
+        <th>Dijagnoza</th>
+        <th>Preporucena terapija</th>
+        <th>Pregled/kontrola</th>
+    </tr>
+    <tr *ngFor="let i of izvestaji">
+        <td>{{i.datum}}</td>
+        <td>{{i.vreme}}</td>
+        <td>{{i.imeLek}} {{i.prezimeLek}}</td>
+        <td>{{i.spec}}</td>
+        <td>{{i.dolazak}}</td>
+        <td>{{i.dijagnoza}}</td>
+        <td>{{i.terapija}}</td>
+        <td>{{i.kontrola}}</td>
+        
+    </tr>
+</table>
+
+<hr>
+{{error}}
+
+</body>
+</html>
+
+

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Menadzer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #666;
+            padding: 25px;
+            text-align: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        /* Create two columns/boxes that floats next to each other */
+        nav {
+            float: left;
+            width: auto;
+            height: auto;
+            /* only for demonstration, should be removed */
+            background: #ccc;
+            padding: 20px;
+        }
+
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 70%;
+            background-color: #f1f1f1;
+            height: auto;
+            /* only for demonstration, should be removed */
+        }
+
+        /* Clear floats after the columns */
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+            height: auto;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        @media (max-width: 600px) {
+
+            nav,
+            article {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Menadzer</h2>
+    <p>Vi imate specijalno pravo pristupa.</p>
+    <p>Mozete upravljati lekarima, pacijentima kao i zahtevima za registraciju</p>
+
+    <header>
+        <h2>Menadzer</h2>
+    </header>
+
+    <section>
+        <nav>
+            <h2>Lekari</h2>
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Specijalizacija</th>
+                <th>Korisnicko ime</th>
+            </tr>
+            <tr *ngFor="let l of lekari">
+                <td>{{l.ime}}</td>
+                <td>{{l.prezime}}</td>
+                <td>{{l.specijalizacija}}</td>
+                <td>{{l.korisnicko_ime}}</td>
+                <td> <img width="50" src="/assets/lekari/{{l.slika}}"></td>
+                <td>
+                    <button (click)="obrisiL(l.korisnicko_ime)">Obrisi</button>
+                </td>
+            </tr>
+
+        </nav>
+
+
+        <nav style="background-color: gray;">
+            <h1>Pacijenti</h1>
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Korisnicko ime</th>
+            </tr>
+            <tr *ngFor="let p of pacijenti">
+                <td>{{p.ime}}</td>
+                <td>{{p.prezime}}</td>
+                <td>{{p.korisnicko_ime}}</td>
+                <td> <img width="50" src="/assets/pacijenti/{{p.slika}}"></td>
+                <td>
+                    <button (click)="obrisiP(p.korisnicko_ime)">Obrisi</button>
+                </td>
+            </tr>
+        </nav>
+
+        <nav style="background-color: whitesmoke;">
+            <h1>Azuriraj podatke lekara</h1>
+            <button (click)="editL()">Edit</button>
+            <br>
+
+            Korisnicko ime: 
+            <input type="text" [(ngModel)]="nKorIme">
+            <br>
+
+            Ime:
+            <input type="text" [(ngModel)]="nIme">
+            <br>
+            Prezime:
+            <input type="text" [(ngModel)]="nPrezime">
+            <br>
+            Adresa:
+            <input type="text" [(ngModel)]="nAdresa">
+            <br>
+            Telefon:
+            <input type="text" [(ngModel)]="nTelefon">
+            <br>
+            Specijalizacija:
+            <input type="text" [(ngModel)]="nSpec">
+            <br>
+            Broj licence:
+            <input type="text" [(ngModel)]="nLicenca">
+            <br>
+            Profilna slika:
+            <input type="file">
+
+            <hr>
+            <h1>Azuriraj podatke pacijenta </h1>
+            <button (click)="editP()">Edit</button>
+
+            <br>
+            Korisnicko ime: 
+            <input type="text" [(ngModel)]="pKorIme">
+            <br>
+            Ime:
+            <input type="text" [(ngModel)]="pIme">
+            <br>
+            Prezime:
+            <input type="text" [(ngModel)]="pPrezime">
+            <br>
+            Adresa:
+            <input type="text" [(ngModel)]="pAdresa">
+            <br>
+            Email:
+            <input type="text" [(ngModel)]="pEmail">
+            <br>
+            Telefon:
+            <input type="text" [(ngModel)]="pTelefon">
+            <br>
+            Profilna slika:
+            <input type="file">
+            <br>
+            
+            <hr />
+        </nav>
+    </section>
+
+    <section>
+        <nav>
+            <h3>Zahtevi za registraciju</h3>
+
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Korisnicko ime</th>
+                <th>Lozinka</th>
+                <th>Adresa</th>
+                <th>Telefon</th>
+                <th>Email</th>
+                <th>Slika</th>
+            </tr>
+            <tr *ngFor="let r of registracije">
+                <td>{{r.ime}}</td>
+                <td>{{r.prezime}}</td>
+                <td>{{r.korisnicko_ime}}</td>
+                <td>{{r.lozinka}}</td>
+                <td>{{r.adresa}}</td>
+                <td>{{r.telefon}}</td>
+                <td>{{r.email}}</td>
+                <!-- <td> <img width="50" src="/assets/pacijenti/{{p.slika}}"></td> -->
+                <td>
+                    <button (click)="prihvati(r.korisnicko_ime)">Prihvati</button>
+                </td>
+                <td>
+                    <button (click)="odbij(r.korisnicko_ime)">Odbij</button>
+                </td>
+        </nav>
+
+
+        <nav>
+            <h1>Dodaj novog lekara</h1>
+            Korisnicko ime: 
+            <input type="text" [(ngModel)]="lKorIme">
+            <br>
+            Lozinka:
+            <input type="password" [(ngModel)]="lLozinka">
+            <br>
+            Ime:
+            <input type="text" [(ngModel)]="lIme">
+            <br>
+            Prezime:
+            <input type="text" [(ngModel)]="lPrezime">
+            <br>
+            Adresa:
+            <input type="text" [(ngModel)]="lAdresa">
+            <br>
+            Telefon:
+            <input type="text" [(ngModel)]="lTelefon">
+            <br>
+            Specijalizacija:
+            <input type="text" [(ngModel)]="lSpec">
+            <br>
+            Broj licence:
+            <input type="text" [(ngModel)]="lLicenca">
+            <br>
+            Profilna slika:
+            <input type="file"> <br>
+            <button (click)="dodaj()">Dodaj</button>
+        </nav>
+    </section>
+
+    <footer>
+        <p>{{text}}</p>
+    </footer>
+
+</body>
+
+</html>
